@@ -61,86 +61,98 @@ class _HomePageState extends State<HomePage> {
             SliverList(
               delegate:
                   SliverChildBuilderDelegate((BuildContext context, int index) {
-                return Stack(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 8),
-                      padding: EdgeInsets.all(25),
-                      height: MediaQuery.of(context).size.height * 0.32,
-                      decoration: BoxDecoration(
-                        color: data[index]["color"],
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            data[index]["name"],
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Playfair Display",
-                              fontSize: 18,
-                              letterSpacing: 1,
-                              fontWeight: FontWeight.w600
-                            ),
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                            "Makeup & Hairstyle",
-                            style: TextStyle(
+                return InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DetailPage(
+                                  color: data[index]["color"],
+                                  name: data[index]["name"],
+                                  imageUrl: data[index]["image"],
+                                )));
+                  },
+                  child: Stack(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 8),
+                        padding: EdgeInsets.all(25),
+                        height: MediaQuery.of(context).size.height * 0.32,
+                        decoration: BoxDecoration(
+                          color: data[index]["color"],
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              data[index]["name"],
+                              style: TextStyle(
                                 color: Colors.white,
-                                fontFamily: "Architects Daughter",
-                              fontSize: 12
+                                fontFamily: "Playfair Display",
+                                fontSize: 18,
+                                letterSpacing: 1,
+                                fontWeight: FontWeight.w600
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 20),
-                          _rating(),
-                          Expanded(child: SizedBox()),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => DetailPage(
-                                    color: data[index]["color"],
-                                    name: data[index]["name"],
-                                    imageUrl: data[index]["image"],
+                            SizedBox(height: 4),
+                            Text(
+                              "Makeup & Hairstyle",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "Architects Daughter",
+                                fontSize: 12
+                              ),
+                            ),
+                            SizedBox(height: 20),
+                            _rating(),
+                            Expanded(child: SizedBox()),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailPage(
+                                      color: data[index]["color"],
+                                      name: data[index]["name"],
+                                      imageUrl: data[index]["image"],
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                            style: ButtonStyle(
-                              padding: MaterialStateProperty.all(
-                                  EdgeInsets.symmetric(horizontal: 15)),
-                              backgroundColor:
-                                  MaterialStateProperty.all(Color(0XFF30475e)),
-                              shape:
-                                  MaterialStateProperty.all<RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                              )),
+                                );
+                              },
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all(
+                                    EdgeInsets.symmetric(horizontal: 15)),
+                                backgroundColor:
+                                    MaterialStateProperty.all(Color(0XFF30475e)),
+                                shape:
+                                    MaterialStateProperty.all<RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                )),
+                              ),
+                              child: Text(
+                                "Show More",
+                                style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600),
+                              ),
                             ),
-                            child: Text(
-                              "Show More",
-                              style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 8,
-                      right: 10,
-                      child: Hero(
-                        tag: data[index]["image"],
-                        child: Image.asset(
-                          data[index]["image"],
-                          height: MediaQuery.of(context).size.height * 0.3,
-                          // scale: 2.3,
+                          ],
                         ),
                       ),
-                    ),
-                  ],
+                      Positioned(
+                        bottom: 8,
+                        right: 10,
+                        child: Hero(
+                          tag: data[index]["image"],
+                          child: Image.asset(
+                            data[index]["image"],
+                            height: MediaQuery.of(context).size.height * 0.3,
+                            // scale: 2.3,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 );
               }, childCount: data.length),
             ),
