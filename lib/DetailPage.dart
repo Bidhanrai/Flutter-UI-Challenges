@@ -50,7 +50,7 @@ class _DetailPageState extends State<DetailPage> {
                 borderRadius: BorderRadius.vertical(top: Radius.circular(30))
               ),
               child: ListView(
-                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 40),
+                padding: EdgeInsets.symmetric(vertical: 40),
                 children: <Widget>[
                   _circularButtons(),
 
@@ -62,12 +62,12 @@ class _DetailPageState extends State<DetailPage> {
                     child: Theme(
                       data: ThemeData().copyWith(dividerColor: Colors.transparent),
                       child: ExpansionTile(
-                        tilePadding: EdgeInsets.zero,
+                        tilePadding: EdgeInsets.symmetric(horizontal: 25),
                         title: Text("Makeup", style: TextStyle(color: Colors.grey[700]),),
                         trailing: _isExpanded
                             ? Icon(Icons.keyboard_arrow_up_rounded, color: widget.color,)
                             : Icon(Icons.keyboard_arrow_down_rounded, color: widget.color,),
-                        childrenPadding: EdgeInsets.only(bottom: 10),
+                        childrenPadding: EdgeInsets.only(bottom: 10, left: 25, right: 25),
                         initiallyExpanded: true,
                         onExpansionChanged: (value) {
                           setState(() {
@@ -117,48 +117,61 @@ class _DetailPageState extends State<DetailPage> {
                     child: Theme(
                       data: ThemeData().copyWith(dividerColor: Colors.transparent),
                       child: ExpansionTile(
-                        tilePadding: EdgeInsets.zero,
-                        //childrenPadding: EdgeInsets.only(bottom: 10),
+                        tilePadding: EdgeInsets.symmetric(horizontal: 25),
+                        childrenPadding: EdgeInsets.only(left: 25, right: 25),
                         title: Text("Hairstyle", style: TextStyle(color: Colors.grey[700]),),
                         trailing: Icon(Icons.keyboard_arrow_down_rounded, color: widget.color,),
                       ),
                     ),
                   ),
 
-                  SizedBox(height: 20,),
+                  SizedBox(height: 5,),
 
-                  Text("Date & Time", style: TextStyle(fontSize: 16, color: Colors.grey[700]),),
+                  _totalWidget(),
+
+                  SizedBox(height: 30,),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: Text("Date & Time", style: TextStyle(fontSize: 16, color: Colors.grey[700]),),
+                  ),
                   SizedBox(height: 10,),
                   _dateTimeWidget(context),
 
                   SizedBox(height: 25,),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Information", style: TextStyle(fontSize: 16, color: Colors.grey[700]),),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            _infoVisibility = !_infoVisibility;
-                          });
-                        },
-                        child: Text(
-                          "Read info",
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: widget.color,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Information", style: TextStyle(fontSize: 16, color: Colors.grey[700]),),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              _infoVisibility = !_infoVisibility;
+                            });
+                          },
+                          child: Text(
+                            "Read info",
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: widget.color,
+                            ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                   SizedBox(height: 20,),
-                  Visibility(
-                    visible: _infoVisibility,
-                    child: Text("I would like to introduce myself. my name is ${widget.name} and I am"
-                        "a freelance makeup artist and hairdresser.\n\n",
-                    style: TextStyle(fontSize: 12, wordSpacing: 1, height: 1.6),),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25),
+                    child: Visibility(
+                      visible: _infoVisibility,
+                      child: Text("I would like to introduce myself. my name is ${widget.name} and I am"
+                          "a freelance makeup artist and hairdresser.\n\n",
+                      style: TextStyle(fontSize: 12, wordSpacing: 1, height: 1.6),),
+                    ),
                   ),
 
                   SizedBox(height: 10,),
@@ -238,181 +251,210 @@ class _DetailPageState extends State<DetailPage> {
   }
 
   Widget _circularButtons() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        InkWell(
-          onTap: () {
-            setState(() {
-              _makeUpVisibility = !_makeUpVisibility;
-            });
-          },
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                    color: Constant.pink,
-                    shape: BoxShape.circle
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          InkWell(
+            onTap: () {
+              setState(() {
+                _makeUpVisibility = !_makeUpVisibility;
+              });
+            },
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                      color: Constant.pink,
+                      shape: BoxShape.circle
+                  ),
+                  child: Icon(Icons.house_rounded, color: Colors.white,),
                 ),
-                child: Icon(Icons.house_rounded, color: Colors.white,),
-              ),
-              SizedBox(height: 8,),
-              _makeUpVisibility ? MyBullets(color: Constant.pink,) : SizedBox(height: 5) ,
-            ],
+                SizedBox(height: 8,),
+                _makeUpVisibility ? MyBullets(color: Constant.pink,) : SizedBox(height: 5) ,
+              ],
+            ),
           ),
-        ),
-        InkWell(
-          onTap: () {
-            setState(() {
-              _hairstyleVisibility = !_hairstyleVisibility;
-            });
-          },
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                    color: Color(0XFFc19277),
-                    shape: BoxShape.circle
+          InkWell(
+            onTap: () {
+              setState(() {
+                _hairstyleVisibility = !_hairstyleVisibility;
+              });
+            },
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                      color: Color(0XFFc19277),
+                      shape: BoxShape.circle
+                  ),
+                  child: Icon(Icons.house_rounded, color: Colors.white,),
                 ),
-                child: Icon(Icons.house_rounded, color: Colors.white,),
-              ),
-              SizedBox(height: 8,),
-              _hairstyleVisibility ? MyBullets(color: Color(0XFFc19277)) : SizedBox(height: 5) ,
-            ],
+                SizedBox(height: 8,),
+                _hairstyleVisibility ? MyBullets(color: Color(0XFFc19277)) : SizedBox(height: 5) ,
+              ],
+            ),
           ),
-        ),
-        InkWell(
-          onTap: () {
+          InkWell(
+            onTap: () {
 
-          },
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                    color: Constant.skyBlue,
-                    shape: BoxShape.circle
+            },
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                      color: Constant.skyBlue,
+                      shape: BoxShape.circle
+                  ),
+                  child: Icon(Icons.house_rounded, color: Colors.white,),
                 ),
-                child: Icon(Icons.house_rounded, color: Colors.white,),
-              ),
-              SizedBox(height: 8,),
-              SizedBox(height: 5,),
-            ],
+                SizedBox(height: 8,),
+                SizedBox(height: 5,),
+              ],
+            ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _totalWidget() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+      color: Colors.yellow[100],
+      alignment: Alignment.centerRight,
+      child: RichText(
+        text: TextSpan(
+          text: 'Total: ',
+          style: TextStyle(color: Colors.grey, fontSize: 12, fontWeight: FontWeight.w500),
+          children: [
+            TextSpan(
+              text: "  Rs.600",
+              style: TextStyle(color: Constant.yellow, fontWeight: FontWeight.w500, fontSize: 14)
+            )
+          ]
         ),
-      ],
+      ),
     );
   }
 
   Widget _dateTimeWidget(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [BoxShadow(color: Colors.grey[400])]),
-            child: TextField(
-              style: TextStyle(color: widget.color),
-              readOnly: true,
-              controller: _dateTextController,
-              onTap: () async{
-                DateTime date = await showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime(DateTime.now().year - 1),
-                  lastDate: DateTime(DateTime.now().year + 1),
-                );
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 25),
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [BoxShadow(color: Colors.grey[400])]),
+              child: TextField(
+                style: TextStyle(color: widget.color),
+                readOnly: true,
+                controller: _dateTextController,
+                onTap: () async{
+                  DateTime date = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(DateTime.now().year - 1),
+                    lastDate: DateTime(DateTime.now().year + 1),
+                  );
 
-                if (date != null) {
-                  final localizations = MaterialLocalizations.of(context);
-                  final formattedTimeOfDay = localizations.formatMediumDate(date);
+                  if (date != null) {
+                    final localizations = MaterialLocalizations.of(context);
+                    final formattedTimeOfDay = localizations.formatMediumDate(date);
 
-                  //this setState is for updating the Booking button
-                  setState(() {
-                    _dateTextController.text = "$formattedTimeOfDay";
-                  });
+                    //this setState is for updating the Booking button
+                    setState(() {
+                      _dateTextController.text = "$formattedTimeOfDay";
+                    });
 
-                }
-              },
-              decoration: InputDecoration(
-                hintText: "Select Date",
-                hintStyle: TextStyle(color: Colors.grey[300]),
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                  }
+                },
+                decoration: InputDecoration(
+                  hintText: "Select Date",
+                  hintStyle: TextStyle(color: Colors.grey[300]),
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                ),
               ),
             ),
           ),
-        ),
-        SizedBox(
-          width: 20,
-        ),
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [BoxShadow(color: Colors.grey[400])]),
-            child: TextField(
-              style: TextStyle(color: widget.color),
-              controller: _timeTextController,
-              readOnly: true,
-              onTap: () async{
-                TimeOfDay time = await showTimePicker(context: context, initialTime: TimeOfDay.now());
+          SizedBox(
+            width: 20,
+          ),
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [BoxShadow(color: Colors.grey[400])]),
+              child: TextField(
+                style: TextStyle(color: widget.color),
+                controller: _timeTextController,
+                readOnly: true,
+                onTap: () async{
+                  TimeOfDay time = await showTimePicker(context: context, initialTime: TimeOfDay.now());
 
-                if(time != null) {
-                  final localizations = MaterialLocalizations.of(context);
-                  final formattedTimeOfDay = localizations.formatTimeOfDay(time);
+                  if(time != null) {
+                    final localizations = MaterialLocalizations.of(context);
+                    final formattedTimeOfDay = localizations.formatTimeOfDay(time);
 
-                  //this setState is for updating the Booking button
-                  setState(() {
-                    _timeTextController.text = "$formattedTimeOfDay";
-                  });
-                }
-              },
-              decoration: InputDecoration(
-                hintText: "Select Time",
-                hintStyle: TextStyle(color: Colors.grey[300]),
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                    //this setState is for updating the Booking button
+                    setState(() {
+                      _timeTextController.text = "$formattedTimeOfDay";
+                    });
+                  }
+                },
+                decoration: InputDecoration(
+                  hintText: "Select Time",
+                  hintStyle: TextStyle(color: Colors.grey[300]),
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                ),
               ),
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 
   Widget _bookingButton() {
-    return TextButton(
-      onPressed: _dateTextController.text.length == 0 || _timeTextController.text.length == 0
-          ? null
-          : () {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (BuildContext context) => BookingPage()),
-                ModalRoute.withName('/'),
-              );
-            },
-      child: Text(
-        "Booking",
-        style: TextStyle(
-            color: _dateTextController.text.length == 0 || _timeTextController.text.length == 0
-              ? widget.color
-              : Colors.white,
-            fontWeight: FontWeight.w600,
-            fontSize: 12
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      child: TextButton(
+        onPressed: _dateTextController.text.length == 0 || _timeTextController.text.length == 0
+            ? null
+            : () {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (BuildContext context) => BookingPage()),
+                  ModalRoute.withName('/'),
+                );
+              },
+        child: Text(
+          "Booking",
+          style: TextStyle(
+              color: _dateTextController.text.length == 0 || _timeTextController.text.length == 0
+                ? widget.color
+                : Colors.white,
+              fontWeight: FontWeight.w600,
+              fontSize: 12
+          ),
         ),
-      ),
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(
-          _dateTextController.text.length == 0 || _timeTextController.text.length == 0
-            ? widget.color.withOpacity(0.2)
-            : Color(0XFF30475e),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(
+            _dateTextController.text.length == 0 || _timeTextController.text.length == 0
+              ? widget.color.withOpacity(0.2)
+              : Color(0XFF30475e),
+          ),
         ),
-      ),
 
+      ),
     );
   }
 }

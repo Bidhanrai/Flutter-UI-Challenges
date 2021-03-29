@@ -36,6 +36,8 @@ class _HomePageState extends State<HomePage> {
     },
   ];
 
+  bool _folded  = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,12 +46,46 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: CustomScrollView(
           slivers: <Widget>[
-            const SliverAppBar(
-              // title: Text("Get Ready"),
-              // titleSpacing: 0,
+            SliverAppBar(
               centerTitle: false,
               actions: [
-                Icon(Icons.search, color: Colors.grey,)
+                AnimatedContainer(
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.easeIn,
+                  width: _folded ? 50 : MediaQuery.of(context).size.width * 0.85,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                        ),
+                      ),
+                      hintText: "Search Artists",
+                      filled: true,
+                      fillColor: _folded ? Colors.white : Colors.grey[100],
+                      contentPadding: EdgeInsets.only(left: 20),
+                      suffixIcon: Material(
+                        type: MaterialType.transparency,
+                        child: InkWell(
+                          overlayColor: MaterialStateProperty.all(Colors.transparent),
+                          onTap: () {
+                            if(!_folded)FocusScope.of(context).unfocus();
+                            setState(() {
+                              _folded = !_folded;
+                            });
+                          },
+                          child: Icon(
+                            _folded ? Icons.search : Icons.close,
+                            color: Colors.black54,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                //Icon(Icons.search, color: Colors.grey,)
               ],
             ),
 

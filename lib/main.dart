@@ -13,7 +13,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Colors.white,
-        fontFamily: "Open Sans"
+        fontFamily: "Open Sans",
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Colors.grey,
+        )
       ),
       home: HomePage(),
     );
