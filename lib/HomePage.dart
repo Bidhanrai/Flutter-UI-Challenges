@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_ui_challenges/Constant.dart';
 import 'package:flutter_ui_challenges/DetailPage.dart';
 
@@ -39,6 +40,12 @@ class _HomePageState extends State<HomePage> {
   bool _folded  = true;
 
   @override
+  void initState() {
+    super.initState();
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,DeviceOrientation.portraitDown]);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -50,7 +57,7 @@ class _HomePageState extends State<HomePage> {
               centerTitle: false,
               actions: [
                 AnimatedContainer(
-                  duration: Duration(milliseconds: 300),
+                  duration: Duration(milliseconds: 200),
                   curve: Curves.easeIn,
                   width: _folded ? 50 : MediaQuery.of(context).size.width * 0.85,
                   child: TextField(
