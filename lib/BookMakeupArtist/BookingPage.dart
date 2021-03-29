@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_challenges/Constant.dart';
+import 'package:flutter_ui_challenges/HomeView.dart';
 
 class BookingPage extends StatefulWidget {
   @override
@@ -87,7 +88,7 @@ class _BookingPageState extends State<BookingPage> with SingleTickerProviderStat
               Expanded(child: SizedBox(),),
               TextButton(
                 onPressed:() {
-                  Navigator.pop(context);
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomeView()));
                 },
                 child: AnimatedPadding(
                   duration: Duration(milliseconds: 1000),

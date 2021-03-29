@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ui_challenges/BookingPage.dart';
+import 'package:flutter_ui_challenges/BookMakeupArtist/BookingPage.dart';
+import 'package:flutter_ui_challenges/BookMakeupArtist/Widgets/MyBullets.dart';
 import 'package:flutter_ui_challenges/Constant.dart';
-import 'package:flutter_ui_challenges/Widgets/MyBullets.dart';
 
 class DetailPage extends StatefulWidget {
 

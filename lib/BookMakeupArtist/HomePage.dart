@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ui_challenges/Constant.dart';
-import 'package:flutter_ui_challenges/DetailPage.dart';
+import 'package:flutter_ui_challenges/BookMakeupArtist/DetailPage.dart';
 
 class HomePage extends StatefulWidget {
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ui_challenges/HomePage.dart';
+import 'package:flutter_ui_challenges/BookMakeupArtist/HomePage.dart';
+import 'package:flutter_ui_challenges/HomeView.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
           cursorColor: Colors.grey,
         )
       ),
-      home: HomePage(),
+      home: HomeView(),
     );
   }
 }
