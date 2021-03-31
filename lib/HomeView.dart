@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_challenges/BookMakeupArtist/HomePage.dart';
 import 'package:flutter_ui_challenges/E-Commerce/EHomePage.dart';
+import 'package:flutter_ui_challenges/E-Commerce/SignInPage.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -23,7 +24,7 @@ class _HomeViewState extends State<HomeView> {
               title: Text("Book Makeup Artist"),
             ),
             ListTile(
-              onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>EHomePage()));},
+              onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>SignInPage()));},
               title: Text("E-Commerce app"),
             ),
           ],

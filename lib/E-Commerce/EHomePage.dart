@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_challenges/Constant.dart';
+import 'package:flutter_ui_challenges/E-Commerce/ProductDetailPage.dart';
 
 class EHomePage extends StatefulWidget {
   @override
@@ -26,12 +27,11 @@ class _EHomePageState extends State<EHomePage> {
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 children: [
-                  _category("Men"),
-                  _category("Women"),
-                  _category("Devices"),
-                  _category("Gadgets"),
-                  _category("Gaming"),
-                  _category("Shoes"),
+                  _category("Men", "assets/ecom/men.png"),
+                  _category("Women", "assets/ecom/women.png"),
+                  _category("Devices", "assets/ecom/device.png"),
+                  _category("Gadgets", "assets/ecom/gadget.png"),
+                  _category("Gaming", "assets/ecom/gaming.png"),
                 ],
               ),
             ),
@@ -163,25 +163,25 @@ class _EHomePageState extends State<EHomePage> {
     );
   }
 
-  Widget _category(String categoryName) {
+  Widget _category(String categoryName, String imageUrl) {
     return Padding(
-      padding: const EdgeInsets.only(right: 20),
+      padding: const EdgeInsets.only(right: 25),
       child: Column(
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(categoryName == "Women" ? 15 : 10),
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(color: Colors.grey[100], spreadRadius: 1, blurRadius: 2),
-                  ],
-                  shape: BoxShape.circle
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(color: Colors.grey[100], spreadRadius: 1, blurRadius: 2),
+                ],
+                shape: BoxShape.circle,
               ),
-              child: Icon(Icons.no_encryption_gmailerrorred_outlined),
+              child: Image.asset(imageUrl, fit: BoxFit.cover,),
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 6),
           Text(categoryName, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14, color: Colors.black),),
         ],
       ),
@@ -191,16 +191,21 @@ class _EHomePageState extends State<EHomePage> {
   Widget _bestSellingProduct(String productName, String productBrand, String price, String imageUrl) {
     return Padding(
       padding: const EdgeInsets.only(right: 15),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Image.asset(imageUrl)
-          ),
-          Text(productName, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600,),),
-          Text(productBrand, style: TextStyle(color: Constant.grey, fontSize: 12, height: 1.5),),
-          Text(price, style: TextStyle(fontWeight: FontWeight.w600),),
-        ],
+      child: InkWell(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>ProductDetailPage(productImageUrl: imageUrl, productName: productName,)));
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Image.asset(imageUrl)
+            ),
+            Text(productName, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600,),),
+            Text(productBrand, style: TextStyle(color: Constant.grey, fontSize: 12, height: 1.5),),
+            Text(price, style: TextStyle(fontWeight: FontWeight.w600),),
+          ],
+        ),
       ),
     );
   }
