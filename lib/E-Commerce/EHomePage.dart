@@ -13,101 +13,105 @@ class _EHomePageState extends State<EHomePage> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: _appBar(),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18),
-        child: ListView(
-          children: [
-            Text("Categories", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16),),
-            SizedBox(height: height * 0.02),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.15,
-              child: ListView(
-                padding: EdgeInsets.only(top: 5, left: 5),
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                children: [
-                  _category("Men", "assets/ecom/men.png"),
-                  _category("Women", "assets/ecom/women.png"),
-                  _category("Devices", "assets/ecom/device.png"),
-                  _category("Gadgets", "assets/ecom/gadget.png"),
-                  _category("Gaming", "assets/ecom/gaming.png"),
-                ],
-              ),
-            ),
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            _appBar(),
+            SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: 18),
+              sliver : SliverList(delegate: SliverChildListDelegate([
+                Text("Categories", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16),),
+                SizedBox(height: height * 0.02),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.15,
+                  child: ListView(
+                    padding: EdgeInsets.only(top: 5, left: 5),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      _category("Men", "assets/ecom/men.png"),
+                      _category("Women", "assets/ecom/women.png"),
+                      _category("Devices", "assets/ecom/device.png"),
+                      _category("Gadgets", "assets/ecom/gadget.png"),
+                      _category("Gaming", "assets/ecom/gaming.png"),
+                    ],
+                  ),
+                ),
 
-            SizedBox(height: height * 0.06),
+                SizedBox(height: height * 0.06),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Best Selling", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16),),
-                Text("See all", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),),
-              ],
-            ),
-            SizedBox(height: height * 0.02),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.4,
-              child: ListView(
-                padding: EdgeInsets.only(top: 5, left: 5),
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                children: [
-                  _bestSellingProduct("BeoPlay Speaker", "Bank and Olufsen", "\$755", "assets/ecom/speaker.jpg"),
-                  _bestSellingProduct("Leather Wristwatch", "Tag Heuer", "\$2550", "assets/ecom/watch.jpg"),
-                  _bestSellingProduct("Cosy winter Trousers", "Nike", "\$205", "assets/ecom/tshirt.jpg"),
-                ],
-              ),
-            ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Best Selling", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16),),
+                    Text("See all", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),),
+                  ],
+                ),
+                SizedBox(height: height * 0.02),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.4,
+                  child: ListView(
+                    padding: EdgeInsets.only(top: 5, left: 5),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      _bestSellingProduct("BeoPlay Speaker", "Bank and Olufsen", "\$755", "assets/ecom/speaker.jpg"),
+                      _bestSellingProduct("Leather Wristwatch", "Tag Heuer", "\$2550", "assets/ecom/watch.jpg"),
+                      _bestSellingProduct("Cosy winter Trousers", "Nike", "\$205", "assets/ecom/tshirt.jpg"),
+                    ],
+                  ),
+                ),
 
-            SizedBox(height: height * 0.06),
+                SizedBox(height: height * 0.06),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Featured Brands", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16),),
-                Text("See all", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),),
-              ],
-            ),
-            SizedBox(height: height * 0.02),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.12,
-              child: ListView(
-                padding: EdgeInsets.all(2),
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                children: [
-                  _featuredBrand("B&o", "5693", "assets/ecom/b&o.png"),
-                  _featuredBrand("Beats", "1124", "assets/ecom/beats.png"),
-                ],
-              ),
-            ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Featured Brands", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16),),
+                    Text("See all", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),),
+                  ],
+                ),
+                SizedBox(height: height * 0.02),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.12,
+                  child: ListView(
+                    padding: EdgeInsets.all(2),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      _featuredBrand("B&o", "5693", "assets/ecom/b&o.png"),
+                      _featuredBrand("Beats", "1124", "assets/ecom/beats.png"),
+                    ],
+                  ),
+                ),
 
-            SizedBox(height: height * 0.06),
+                SizedBox(height: height * 0.06),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Recommended", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16),),
-                Text("See all", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),),
-              ],
-            ),
-            SizedBox(height: height * 0.02),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.4,
-              child: ListView(
-                padding: EdgeInsets.only(top: 5, left: 5),
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                children: [
-                  _bestSellingProduct("Tshirt", "Addidas", "\$155", "assets/ecom/tshirt.jpg"),
-                  _bestSellingProduct("Leather Wristwatch", "Tag Heuer", "\$2550", "assets/ecom/watch.jpg"),
-                  _bestSellingProduct("Cosy winter Trousers", "Nike", "\$205", "assets/ecom/speaker.jpg"),
-                ],
-              ),
-            ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Recommended", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16),),
+                    Text("See all", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),),
+                  ],
+                ),
+                SizedBox(height: height * 0.02),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.4,
+                  child: ListView(
+                    padding: EdgeInsets.only(top: 5, left: 5),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      _bestSellingProduct("Tshirt", "Addidas", "\$155", "assets/ecom/tshirt.jpg"),
+                      _bestSellingProduct("Leather Wristwatch", "Tag Heuer", "\$2550", "assets/ecom/watch.jpg"),
+                      _bestSellingProduct("Cosy winter Trousers", "Nike", "\$205", "assets/ecom/speaker.jpg"),
+                    ],
+                  ),
+                ),
 
-            SizedBox(height: height * 0.1),
+                SizedBox(height: height * 0.1),
+              ])),
+            )
           ],
         ),
       ),
@@ -124,9 +128,10 @@ class _EHomePageState extends State<EHomePage> {
   }
 
   Widget _appBar() {
-    return AppBar(
+    return SliverAppBar(
       elevation: 0,
       toolbarHeight: 100,
+      floating: true,
       title: SizedBox(
         height: 40,
         child: TextField(

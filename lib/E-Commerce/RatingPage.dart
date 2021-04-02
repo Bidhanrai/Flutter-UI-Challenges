@@ -73,6 +73,7 @@ class _RatingPageState extends State<RatingPage> {
                       TextButton(
                         onPressed: () {
                           print("Send Clicked");
+                          FocusScope.of(context).nextFocus();
                         },
                         child: Text("SEND", style: TextStyle(color: Colors.white),),
                         style: ButtonStyle(
