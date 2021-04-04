@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   flutter_rating_bar: ^4.0.0
+  webview_flutter: ^2.0.2
 
 #  intl: ^0.17.0
 
@@ -52,6 +53,7 @@ flutter:
   assets:
     - assets/
     - assets/ecom/
+    - assets/travel/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

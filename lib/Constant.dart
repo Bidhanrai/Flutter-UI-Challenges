@@ -11,4 +11,8 @@ class Constant {
   //E-Commerce app
   static final grey = Colors.grey[600];
 
+  //Travel App
+  static final green = Color(0XFF16c79a);
+
+
 }
