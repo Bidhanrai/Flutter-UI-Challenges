@@ -44,7 +44,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               SizedBox(height: height * 0.05,),
 
               Container(
-                padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: Constant.green,
                   shape: BoxShape.circle,
