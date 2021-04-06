@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:flutter_ui_challenges/Constant.dart';
+import 'package:flutter_ui_challenges/Travel%20App/PlanTripPage.dart';
+import 'package:flutter_ui_challenges/Travel%20App/ReadMorePage.dart';
 
 class TDetailPage extends StatefulWidget {
 
@@ -77,7 +78,19 @@ class _TDetailPageState extends State<TDetailPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ReadMorePage(
+                              rating: widget.rating,
+                              place: widget.place,
+                              detail: widget.detail,
+                              imageUrl: widget.imageUrl,
+                            ),
+                          ),
+                        );
+                      },
                       child: Text("Read more", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),),
                       style: ButtonStyle(
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
@@ -86,7 +99,9 @@ class _TDetailPageState extends State<TDetailPage> {
                       ),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>PlanTripPage(place: widget.place, imageUrl: widget.imageUrl,)));
+                      },
                       child: Text("Plan trip", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),),
                       style: ButtonStyle(
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
