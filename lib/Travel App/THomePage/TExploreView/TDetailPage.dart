@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:flutter_ui_challenges/Travel%20App/PlanTripPage.dart';
-import 'package:flutter_ui_challenges/Travel%20App/ReadMorePage.dart';
+import 'package:flutter_ui_challenges/Travel%20App/PlanTripPage/NewPlanPage.dart';
+import 'package:flutter_ui_challenges/Travel%20App/THomePage/TExploreView/ReadMorePage.dart';
 
 class TDetailPage extends StatefulWidget {
 
@@ -100,7 +100,7 @@ class _TDetailPageState extends State<TDetailPage> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>PlanTripPage(place: widget.place, imageUrl: widget.imageUrl,)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>NewPlanPage(place: widget.place, imageUrl: widget.imageUrl,)));
                       },
                       child: Text("Plan trip", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),),
                       style: ButtonStyle(

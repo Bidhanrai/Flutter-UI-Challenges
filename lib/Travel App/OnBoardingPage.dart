@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_challenges/Constant.dart';
-import 'package:flutter_ui_challenges/Travel%20App/THomePage.dart';
+import 'package:flutter_ui_challenges/Travel%20App/THomePage/THomePage.dart';
 
 class OnBoardingPage extends StatefulWidget {
   @override

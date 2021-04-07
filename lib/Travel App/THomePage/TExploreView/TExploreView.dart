@@ -1,16 +1,10 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_challenges/Constant.dart';
-import 'package:flutter_ui_challenges/Travel%20App/TDetailPage.dart';
+import 'package:flutter_ui_challenges/Travel%20App/THomePage/TExploreView/TDetailPage.dart';
 
-class THomePage extends StatefulWidget {
-  @override
-  _THomePageState createState() => _THomePageState();
-}
+class TExploreView extends StatelessWidget {
 
-class _THomePageState extends State<THomePage> {
-
-  List popularLocations = [
+  final List popularLocations = [
     {
       "place": "Bali, Indonesia",
       "price": "\$497",
@@ -47,7 +41,7 @@ class _THomePageState extends State<THomePage> {
     },
   ];
 
-  List activity = [
+  final List activity = [
     {
       "place": "Chillout",
       "image": "assets/travel/chill.jpg",
@@ -67,69 +61,46 @@ class _THomePageState extends State<THomePage> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              toolbarHeight: height * 0.2,
-              floating: true,
-              elevation: 0,
-              leading: InkWell(
-                onTap: () {Navigator.pop(context);},
-                focusColor: Colors.transparent,
-                child: Icon(Icons.arrow_back_ios, color: Constant.green,),
-              ),
-              flexibleSpace: FlexibleSpaceBar(
-                title: _appBar(height),
-                titlePadding: EdgeInsets.only(right: 20, left: 40, top: 10),
-              ),
+    double height = MediaQuery.of(context).size.longestSide;
+    return SafeArea(
+      child: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            toolbarHeight: height * 0.2,
+            floating: true,
+            elevation: 0,
+            leading: InkWell(
+              onTap: () {Navigator.pop(context);},
+              focusColor: Colors.transparent,
+              child: Icon(Icons.arrow_back_ios, color: Constant.green,),
             ),
-
-            SliverList(delegate: SliverChildListDelegate([
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _subHeading("Popular locations"),
-                  SizedBox(height: height * 0.02,),
-                  _popularPlaces(height)
-                ],
-              ),
-
-              SizedBox(height: height * 0.05),
-
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _subHeading("Browse by activity"),
-                  SizedBox(height: height * 0.02,),
-                  _browseByHistory(height)
-                ],
-              ),
-            ]))
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 2,
-        unselectedItemColor: Colors.black38,
-        selectedItemColor: Constant.green,
-        showUnselectedLabels: true,
-        unselectedFontSize: 12,
-        selectedFontSize: 12,
-        iconSize: 20,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_filled,
+            flexibleSpace: FlexibleSpaceBar(
+              title: _appBar(height),
+              titlePadding: EdgeInsets.only(right: 20, left: 40, top: 10),
             ),
-            label: "Home",
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.calendar_today_rounded), label: "Plan"),
-          BottomNavigationBarItem(icon: Icon(Icons.explore_rounded), label: "Explore"),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
+
+          SliverList(delegate: SliverChildListDelegate([
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _subHeading("Popular locations"),
+                SizedBox(height: height * 0.02,),
+                _popularPlaces(height)
+              ],
+            ),
+
+            SizedBox(height: height * 0.05),
+
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _subHeading("Browse by activity"),
+                SizedBox(height: height * 0.02,),
+                _browseByHistory(height)
+              ],
+            ),
+          ]))
         ],
       ),
     );
@@ -283,7 +254,7 @@ class _THomePageState extends State<THomePage> {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: activity.length,
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.only(right: 15),
@@ -322,5 +293,4 @@ class _THomePageState extends State<THomePage> {
       ),
     );
   }
-
 }

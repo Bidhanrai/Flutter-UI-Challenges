@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_ui_challenges/Constant.dart';
-import 'package:flutter_ui_challenges/Travel%20App/PlanTripPage.dart';
+import 'package:flutter_ui_challenges/Travel%20App/PlanTripPage/NewPlanPage.dart';
 
 class ReadMorePage extends StatelessWidget {
 
@@ -139,7 +139,7 @@ class ReadMorePage extends StatelessWidget {
 
                 TextButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>PlanTripPage(
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>NewPlanPage(
                       imageUrl: imageUrl,
                       place: place,
                     )));

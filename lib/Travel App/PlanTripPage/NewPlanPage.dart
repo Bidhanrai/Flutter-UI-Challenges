@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_challenges/Constant.dart';
+import 'package:flutter_ui_challenges/Travel%20App/PlanTripPage/AddDayPlanPage.dart';
+import 'package:flutter_ui_challenges/Travel%20App/PlanTripPage/AddHotelAndFlightPage.dart';
 import 'package:flutter_ui_challenges/Travel%20App/Widget/MyButton.dart';
 
-class PlanTripPage extends StatefulWidget {
+class NewPlanPage extends StatefulWidget {
 
   final String imageUrl;
   final String place;
-  PlanTripPage({@required this.imageUrl, @required this.place});
+  NewPlanPage({@required this.imageUrl, @required this.place});
 
   @override
-  _PlanTripPageState createState() => _PlanTripPageState();
+  _NewPlanPageState createState() => _NewPlanPageState();
 }
 
-class _PlanTripPageState extends State<PlanTripPage> with TickerProviderStateMixin{
+class _NewPlanPageState extends State<NewPlanPage> with TickerProviderStateMixin{
 
   int _currentPage = 0;
   PageController _pageController;
-  TabController _tabController;
 
   @override
   void initState() {
@@ -25,8 +26,6 @@ class _PlanTripPageState extends State<PlanTripPage> with TickerProviderStateMix
       initialPage: _currentPage,
       keepPage: true,
     );
-
-    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -45,131 +44,12 @@ class _PlanTripPageState extends State<PlanTripPage> with TickerProviderStateMix
           //_currentPage = value;
         },
         children: [
-          ListView(
-            children: [
-              SizedBox(height: height * 0.01),
+          _newPlanPage(height),
 
-              _imageWidget(height),
+          AddDayPlanPage(action: goToNextPage,),
 
-              SizedBox(height: height * 0.03),
+          AddHotelAndFlightPage(action: goToNextPage,),
 
-              _textWidget("Select dates"),
-
-              _datePicker(),
-
-              _textWidget("Add people"),
-
-              SizedBox(height: height * 0.02),
-
-              _addPeopleWidget(),
-
-              SizedBox(height: height * 0.05),
-
-              _sendInvitesWidget(),
-
-              SizedBox(height: height * 0.02),
-
-              _nextButton(),
-            ],
-          ),
-
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(height: height * 0.02,),
-              TabBar(
-                controller: _tabController,
-                labelPadding: EdgeInsets.all(10),
-                indicatorSize: TabBarIndicatorSize.label,
-                indicatorColor: Constant.green,
-                tabs: [
-                  _tabBarItem("Day 1", "March 21"),
-                  _tabBarItem("Day 2", "March 22"),
-                  _tabBarItem("Day 3", "March 23"),
-                ],
-              ),
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    _tabBarView(),
-                    _tabBarView(),
-                    _tabBarView(),
-                  ],
-                  controller: _tabController,
-                ),
-              ),
-
-              _nextButton()
-            ],
-          ),
-          Center(child: Column(
-            children: [
-              Text("Add hotels and flights"),
-              _nextButton(),
-            ],
-          ),)
-        ],
-      ),
-    );
-  }
-
-  Widget _tabBarItem(String label, String day) {
-    return Column(
-      children: [
-        Text(label, style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),),
-        SizedBox(height: 4),
-        Text(day, style: TextStyle(color: Colors.black54, fontSize: 12),),
-
-      ],
-    );
-  }
-
-  Widget _tabBarView() {
-    return Container(
-      color: Colors.grey[50],
-      child: ListView(
-        padding: EdgeInsets.all(20),
-        children: [
-          Row(
-            children: [
-              Flexible(
-                fit: FlexFit.tight,
-                flex: 1,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    border: Border.all(color: Colors.grey[300])
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(Icons.watch_later_outlined, size: 15, color: Colors.grey[400],),
-                      SizedBox(width: 4),
-                      Expanded(child: Text("5:30")),
-                    ],
-                  ),
-                ),
-              ),
-              Flexible(
-                fit: FlexFit.tight,
-                flex: 2,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    border: Border.all(color: Colors.grey[300])
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(Icons.watch_later_outlined, size: 15, color: Colors.grey[400],),
-                      SizedBox(width: 4),
-                      Expanded(child: Text("5:30")),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          )
         ],
       ),
     );
@@ -198,6 +78,36 @@ class _PlanTripPageState extends State<PlanTripPage> with TickerProviderStateMix
           fontSize: 18,
         ),
       ),
+    );
+  }
+
+  Widget _newPlanPage(double height) {
+    return ListView(
+      children: [
+        SizedBox(height: height * 0.01),
+
+        _imageWidget(height),
+
+        SizedBox(height: height * 0.03),
+
+        _textWidget("Select dates"),
+
+        _datePicker(),
+
+        _textWidget("Add people"),
+
+        SizedBox(height: height * 0.02),
+
+        _addPeopleWidget(),
+
+        SizedBox(height: height * 0.05),
+
+        _sendInvitesWidget(),
+
+        SizedBox(height: height * 0.02),
+
+        _nextButton(),
+      ],
     );
   }
 
